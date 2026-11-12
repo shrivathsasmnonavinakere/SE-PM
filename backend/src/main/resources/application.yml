@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: annadhata-backend
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/annadhata}
+      auto-index-creation: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: method
+
+annadhata:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-change-this-before-production-20261112}
+    expiration-ms: 86400000 # 24 hours
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:}
+  model: ${GEMINI_MODEL:gemini-1.5-flash}
+
+firebase:
+  project-id: ${FIREBASE_PROJECT_ID:}
+  credentials: ${FIREBASE_CREDENTIALS:}
+
+logging:
+  level:
+    root: INFO
+    com.annadhata: DEBUG
+    org.springframework.security: INFO
+    org.springframework.data.mongodb: INFO
